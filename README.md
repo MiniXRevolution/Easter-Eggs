@@ -1,19 +1,16 @@
 # Mini X-Revolution Easter Eggs 🥚✨
 
-Willkommen in der geheimen Ecke von Mini X-Revolution!  
-Dieses Repository enthält **nur Easter Eggs** aus vergangenen Versionen kleine Geheimnisse, versteckte Features und Überraschungen, die wir im Laufe der Zeit eingebaut haben.
+Welcome to the secret corner of Mini X-Revolution!  
+This repository exclusively contains **Easter Eggs** from previous versions—small secrets, hidden features, and surprises that we’ve built-in over time.
 
-⚡ **Was dich erwartet:**  
-- Versteckte Botschaften und Codes  
-- Kleine Features, die nur durch Neugier entdeckt werden  
-- Easter Eggs aus vergangenen Releases
+⚡ **What to expect:** - Hidden messages and codes  
+- Small features only discovered through curiosity  
+- Easter Eggs from past releases
 
-🕵️‍♂️ **Hinweis:**  
-Dies ist **kein Zugriff auf den Kerncode** von Mini X-Revolution.  
-Hier geht es um die Extras, die nur aufmerksame Entdecker finden.
+🕵️‍♂️ **Note:** This is **not access to the core code** of Mini X-Revolution.  
+This space is dedicated to the extras that only attentive explorers will find.
 
-💡 **Tipp:**  
-Manchmal lohnt es sich, den Code anzuschauen oder auf versteckte Eingabefelder zu achten – wer genau hinsieht, wird belohnt!  
+💡 **Tip:** Sometimes it pays off to look at the code or watch out for hidden input fields—those who look closely will be rewarded!
 
 ---
 
