@@ -1,7 +1,7 @@
 # Mini X-Revolution Easter Eggs 🥚✨
 
 Welcome to the secret corner of Mini X-Revolution!  
-This repository exclusively contains **Easter Eggs** from previous versions—small secrets, hidden features, and surprises that we’ve built-in over time.
+This repository exclusively contains **Easter Eggs** from previous versions small secrets, hidden features, and surprises that we’ve built in over time.
 
 ⚡ **What to expect:** - Hidden messages and codes  
 - Small features only discovered through curiosity  
