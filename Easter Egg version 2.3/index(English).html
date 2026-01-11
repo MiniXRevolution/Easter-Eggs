@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini X-Revolution Easter Egg</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      justify-content: flex-start;
+    }
+
+    @keyframes fadeInBody {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .terminal {
+      padding: 20px;
+      width: 100%;
+      box-sizing: border-box;
+      white-space: pre-wrap;
+      max-height: none;
+      overflow-y: auto;
+      font-size: 1.2em;
+      text-align: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: none;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 80px auto;
+      padding: 40px 35px;
+      background: linear-gradient(145deg, #1e1e1e, #262626);
+      border-radius: 18px;
+      color: #f0f0f0;
+      overflow: auto;
+      animation: fadeInContainer 1.5s ease-out;
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 255, 225, 0.04);
+      border: none;
+      backdrop-filter: blur(4px);
+    }
+
+    @keyframes fadeInContainer {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    #game-selection {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1000;
+      animation: fadeIn 1s ease-in-out;
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    .snake-canvas {
+      background: #000;
+      border: 2px solid #fff;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    #game-over {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+      z-index: 1001;
+    }
+
+    .manifest {
+      display: none;
+      color: #fff;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      max-width: 600px;
+      text-align: center;
+      font-family: sans-serif;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    input[type="text"] {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      visibility: visible;
+      margin-top: 50px;
+    }
+
+    #close-speech {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      z-index: 100;
+      width: 50px;
+      height: 50px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      will-change: transform, top, left;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+
+
+    #close-speech:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+
+    #close-speech img {
+      width: 45px;
+      height: 45px;
+      max-width: 45px;
+      max-height: 45px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .button {
+        font-size: 1em;
+        padding: 8px 16px;
+      }
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      .terminal {
+        font-size: 1em;
+        padding: 10px;
+      }
+
+      input[type="text"] {
+        font-size: 1em;
+        width: 200px;
+      }
+
+      #game-over {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="close-speech" onclick="navigate('index.html')" class="settings-button">
+    <img id="close-button" src="close.svg" alt="close">
+  </button>
+
+  <div style="text-align: center; margin-top: 10px;">
+    <h1>Mini X-Revolution Easter Egg</h1>
+  </div>
+  <div style="text-align: center;" class="container">
+    <h3>Welcome to a very special page one that only the curious will find.</h3>
+    <p>
+      This Easter Egg is a small secret project by Mini X-Revolution. It isn't hidden behind visible 
+      buttons or obvious clues; it's tucked away deep within the code only those who look closely will discover it.
+    </p>
+    <p>
+      An invisible input field lies <b>hidden</b> somewhere on this page. You can't see it, but it's there. 
+      And if you enter the right term, something unexpected will happen.
+    </p>
+    <p>
+      The trick isn't in clicking, but in typing. This puzzle won't be solved by chance it requires 
+      attention, curiosity, and perhaps a little bit of courage to experiment.
+    </p>
+    <p>
+      A little hint: The name of the project behind all of this might be the key. Just type it in even 
+      if you don't see a visible field.
+    </p>
+    <p>
+      What you find here is no mere gimmick. It’s a small reward for everyone who thinks beyond the obvious.
+    </p>
+    <p><em>So: Stay sharp. Be creative. And above all have fun exploring!</em></p>
+  </div>
+  <br>
+  <br>
+  
+  <div style="display: flex; justify-content: center; align-items: center;" aria-hidden="true">
+    <input type="text" id="hidden-input" placeholder=""
+      style="padding: 10px; font-size: 16px; border: 2px solid #111; background-color: #111; color: #111; border-radius: 5px;">
+  </div>
+  <br>
+
+
+  <div class="terminal" id="terminal"></div>
+  <div id="game-selection" style=" background: #222; border-radius: 10px; padding: 20px;">
+    <button class="button" onclick="startGame()">Start Game</button>
+    <button class="button" onclick="navigate('Easter.egg.html')">Go Back</button>
+  </div>
+
+  <div id="game-over" class="game-over">
+    <h2>Game Over</h2>
+    <p>Your Score: <span id="score">0</span></p>
+    <p>A mistake is only proof that you were brave enough to try.</p>
+    <button class="button" onclick="startGame()">Play Again</button>
+    <button class="button" onclick="navigate('Easter.egg.html')">Back to Start</button>
+  </div>
+
+  <div class="manifest" id="manifest">
+    <h2>Mini X Manifesto</h2>
+    <p id="manifest-text"></p>
+    <button class="button" onclick="navigate('Easter.egg.html')">Back to Start</button>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const code = ['m', 'i', 'n', 'i', 'x'];
+    let input = [];
+
+    document.addEventListener('keydown', (e) => {
+      document.getElementById('hidden-input').style.visibility = 'visible';
+      document.getElementById('hidden-input').focus();
+
+      input.push(e.key.toLowerCase());
+      if (input.length > code.length) input.shift();
+      if (JSON.stringify(input) === JSON.stringify(code)) startSequence();
+    });
+
+    function typeLine(text, callback) {
+      let i = 0;
+      const interval = setInterval(() => {
+        terminal.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          terminal.textContent += '\n';
+          callback();
+        }
+      }, 50);
+    }
+
+    function startSequence() {
+      setBodyScroll(false);
+
+      document.querySelector('h1').style.display = 'none';
+      document.querySelector('.container').style.display = 'none';
+      document.querySelector('input').style.display = 'none';
+
+      terminal.style.display = 'block';
+
+      terminal.innerHTML = '';
+      typeLine('Verbindung zu Mini X-Revolution Server wird hergestellt...', () => {
+        typeLine('', () => {
+          typeLine('Authentifizierung erfolgreich....', () => {
+            terminal.style.display = 'none';
+            document.getElementById('game-selection').style.display = 'block';
+          });
+        });
+      })
+    };
+    function startGame() {
+      setBodyScroll(false);
+
+      document.getElementById('game-selection').style.display = 'none';
+      document.getElementById('game-over').style.display = 'none';
+
+
+      const canvas = document.createElement('canvas');
+      canvas.id = 'game';
+      canvas.className = 'snake-canvas';
+      document.body.appendChild(canvas);
+
+      const size = 20;
+      const cols = Math.floor(window.innerWidth / size);
+      const rows = Math.floor(window.innerHeight / size);
+      canvas.width = cols * size;
+      canvas.height = rows * size;
+      canvas.style.display = 'block';
+      canvas.style.width = canvas.width + 'px';
+      canvas.style.height = canvas.height + 'px';
+      const ctx = canvas.getContext('2d');
+
+      let snake = [{ x: size * Math.floor(cols / 2), y: size * Math.floor(rows / 2) }];
+      let dir = 'right';
+      let food = spawnFood();
+      let score = 0;
+      let gameInterval;
+
+      let touchStartX = null;
+      let touchStartY = null;
+
+      canvas.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      });
+
+      canvas.addEventListener('touchmove', (e) => {
+        if (!touchStartX || !touchStartY) {
+          return;
+        }
+
+        const touchEndX = e.touches[0].clientX;
+        const touchEndY = e.touches[0].clientY;
+
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX > 0 && dir !== 'left') dir = 'right';
+          if (diffX < 0 && dir !== 'right') dir = 'left';
+        } else {
+          if (diffY > 0 && dir !== 'up') dir = 'down';
+          if (diffY < 0 && dir !== 'down') dir = 'up';
+        }
+
+        touchStartX = null;
+        touchStartY = null;
+      });
+
+      function spawnFood() {
+        return {
+          x: Math.floor(Math.random() * cols) * size,
+          y: Math.floor(Math.random() * rows) * size
+        };
+      }
+
+      function gameLoop() {
+        let head = { ...snake[0] };
+        if (dir === 'right') head.x += size;
+        if (dir === 'left') head.x -= size;
+        if (dir === 'up') head.y -= size;
+        if (dir === 'down') head.y += size;
+        snake.unshift(head);
+
+        if (head.x === food.x && head.y === food.y) {
+          food = spawnFood();
+          score++;
+        } else {
+          snake.pop();
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#fff';
+        snake.forEach(p => ctx.fillRect(p.x, p.y, size, size));
+        ctx.fillStyle = '#f00';
+        ctx.fillRect(food.x, food.y, size, size);
+
+        if (head.x < 0 || head.x >= canvas.width ||
+          head.y < 0 || head.y >= canvas.height ||
+          snake.slice(1).some(p => p.x === head.x && p.y === head.y)) {
+          clearInterval(gameInterval);
+          showGameOver(score);
+        }
+      }
+
+      gameInterval = setInterval(gameLoop, 100);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' && dir !== 'left') dir = 'right';
+        if (e.key === 'ArrowLeft' && dir !== 'right') dir = 'left';
+        if (e.key === 'ArrowUp' && dir !== 'down') dir = 'up';
+        if (e.key === 'ArrowDown' && dir !== 'up') dir = 'down';
+      });
+
+      function showGameOver(score) {
+        setBodyScroll(false);
+        document.getElementById('game-over').style.display = 'block';
+        document.getElementById('score').textContent = score;
+
+        const gameCanvas = document.getElementById('game');
+        if (gameCanvas) {
+          document.body.removeChild(gameCanvas);
+        }
+      }
+    }
+
+    function showGameOver(score) {
+      setBodyScroll(false);
+      document.getElementById('game-over').style.display = 'block';
+      document.getElementById('score').textContent = score;
+
+      const gameCanvas = document.getElementById('game');
+      if (gameCanvas) {
+        document.body.removeChild(gameCanvas);
+      }
+    }
+
+
+    function navigate(page) {
+      window.location.href = page;
+    }
+
+    function setBodyScroll(enable) {
+      document.body.style.overflow = enable ? 'auto' : 'hidden';
+    }
+  </script>
+</body>
+
+</html>
+
+
+
+<!--
+███╗   ███╗██╗███╗   ██╗██╗    ██╗  ██╗     ██████╗ ███████╗██╗   ██╗ ██████╗ ██╗     ██╗   ██╗████████╗██╗ ██████╗ ███╗   ██╗
+████╗ ████║██║████╗  ██║██║    ╚██╗██╔╝     ██╔══██╗██╔════╝██║   ██║██╔═══██╗██║     ██║   ██║╚══██╔══╝██║██╔═══██╗████╗  ██║
+██╔████╔██║██║██╔██╗ ██║██║     ╚███╔╝█████╗██████╔╝█████╗  ██║   ██║██║   ██║██║     ██║   ██║   ██║   ██║██║   ██║██╔██╗ ██║
+██║╚██╔╝██║██║██║╚██╗██║██║     ██╔██╗╚════╝██╔══██╗██╔══╝  ╚██╗ ██╔╝██║   ██║██║     ██║   ██║   ██║   ██║██║   ██║██║╚██╗██║
+██║ ╚═╝ ██║██║██║ ╚████║██║    ██╔╝ ██╗     ██║  ██║███████╗ ╚████╔╝ ╚██████╔╝███████╗╚██████╔╝   ██║   ██║╚██████╔╝██║ ╚████║
+╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝    ╚═╝  ╚═╝     ╚═╝  ╚═╝╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+
+                                  Mini X-Revolution | Created by Limlim
+                                         https://minix-revolution.com
+-->
